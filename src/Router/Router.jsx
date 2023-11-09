@@ -4,6 +4,8 @@ import Layout from '../Layout/Layout';
 import ErrorPages from '../ErrorPages/ErrorPages';
 import Home from '../Home/Home/Home';
 import Addjob from '../Pages/Addjob/Addjob';
+import Login from '../Home/Login/Login';
+import SignUp from '../Home/SignUp/SignUp';
 
 const Router = createBrowserRouter([{
     path: "/",
@@ -19,12 +21,12 @@ const Router = createBrowserRouter([{
             element: <Addjob></Addjob>
         },
         {
-            path:'/',
-            element: <Home></Home>
+            path:'/login',
+            element: <Login></Login>
         },
         {
-            path:'/',
-            element: <Home></Home>
+            path:'/signup',
+            element: <SignUp></SignUp>
         },
     ]
 }])
