@@ -1,7 +1,29 @@
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import useAuthContext from "../../Hook/useAuthContext";
+import Swal from "sweetalert2";
 
 const NavBar = () => {
+  const { user, SignOutUser, loading } = useAuthContext();
+
+  if (loading) {
+    return <span className="loading loading-spinner text-secondary"></span>;
+  }
+
+  const SignOutUse = () => {
+    SignOutUser()
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch(() => {});
+  };
+
   return (
     <div className="navbar bg-[#eeeff8]">
       <div className="navbar-start">
@@ -92,7 +114,6 @@ const NavBar = () => {
           </ul>
         </div>
         <Logo></Logo>
-        {/* <a className="btn btn-ghost normal-case text-xl">daisyUI</a> */}
       </div>
       <div className="navbar-center hidden lg:flex ">
         {/*========= laptop to lg ============ */}
@@ -162,59 +183,57 @@ const NavBar = () => {
       </div>
       <div className="navbar-end ">
         <div className="flex-none">
-          <div className="flex">
-            {/* {user && <h2>{user.displayName}</h2>} */}
-
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <div className="">
+            {user ? (
+              <div className="flex gap-4 items-center">
+                {user.displayName}
+                <div className="dropdown dropdown-end">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img src={user.photoURL} />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <a className="justify-between">Profile</a>
+                    </li>
+                    <li>
+                      <a>Settings</a>
+                    </li>
+                    <button onClick={SignOutUse}>
+                      <li>
+                        <a>Logout</a>
+                      </li>
+                    </button>
+                  </ul>
                 </div>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a className="justify-between">Profile</a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <button>
-                  <li>
-                    <a>Logout</a>
-                  </li>
-                </button>
-              </ul>
-            </div>
+              </div>
+            ) : (
+              <div className="text-lg font-roboto font-semibold">
+                <NavLink
+                  to="/login"
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "pending"
+                      : isActive
+                      ? "text-[#6C53F8]  bg-[#E2E5FE] rounded-md hover:text-white hover:bg-[#6C53F8] p-2"
+                      : "p-2  rounded-md"
+                  }
+                >
+                  Log In
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
 
-        <div className="flex-none">
-          {/* <div className="flex">
-{user && <h2>{user.displayName}</h2>}
-    {user ? <div className="dropdown dropdown-end">
-        
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              
-              <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
-          </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <a className="justify-between">
-                Profile
-                
-              </a>
-            </li>
-            <li><a>Settings</a></li>
-            <button onClick={hendleuserlogout}><li><a>Logout</a></li></button>
-          </ul>
-        </div>:<Link to={"/login"} className="bg-[#E2E5FE] text-[#6C53F8] rounded-md p-2 text-lg font-roboto font-semibold">Log In</Link>}
-</div> */}
-        </div>
+        <div className="flex-none"></div>
       </div>
     </div>
   );

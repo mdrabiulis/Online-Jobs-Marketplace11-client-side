@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import loginimg from "../../../public/login.jpg";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
+// import useAuthContext from "../../Hook/useAuthContext";
 
 const Login = () => {
-
+// const  {user}= useAuthContext();
 
     const hendlesign = (event) => {
         event.preventDefault();
