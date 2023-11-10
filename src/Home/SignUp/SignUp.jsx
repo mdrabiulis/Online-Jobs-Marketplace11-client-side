@@ -132,8 +132,8 @@ const SignUp = () => {
               Log in
             </Link>
           </h2>
-          <GoogleLogin></GoogleLogin>
         </form>
+          <GoogleLogin></GoogleLogin>
       </div>
     </div>
   );

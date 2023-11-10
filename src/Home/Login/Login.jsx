@@ -96,8 +96,8 @@ const Login = () => {
               Sign Up Now
             </Link>
           </h2>
-          <GoogleLogin></GoogleLogin>
         </form>
+          <GoogleLogin></GoogleLogin>
       </div>
     </div>
   );
