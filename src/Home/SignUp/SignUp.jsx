@@ -22,7 +22,6 @@ const SignUp = () => {
     setCreateUserSuccessful("");
 
     if (!/^(?=.*[0-9])(?=.*[A-Z])(?=.*[@$!%*#?&]).{7,16}$/.test(password)) {
-      // if (!/(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{7,12}$/.test(password)) {
       Swal.fire({
         icon: "error",
         title: "Oops...",

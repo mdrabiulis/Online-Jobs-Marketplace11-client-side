@@ -16,7 +16,7 @@ const NavBar = () => {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Your work has been saved",
+          title: "Log Out Successful",
           showConfirmButton: false,
           timer: 1500,
         });
