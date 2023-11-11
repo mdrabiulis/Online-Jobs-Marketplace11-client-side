@@ -10,7 +10,7 @@ const Logo = () => {
         <img src={logoimg2} alt="" className="w-24 h-20" />
         {/* <img src={logotext} alt="" className="w-44"/> */}
         <div className="font-roboto">    
-        <h2 className="text-xl font-bold"><samp className="text-xl md:text-7xl lg:text-4xl xl:text-7xl">e</samp>-Learning</h2>
+        <h2 className="text-xl font-bold"><samp className="text-xl md:text-7xl lg:text-4xl xl:text-7xl">e</samp>-Job</h2>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
+import Swal from "sweetalert2";
 
 const Addjob = () => {
   const { user } = useAuthContext();
@@ -13,8 +14,36 @@ const Addjob = () => {
     const Maximum = from.maximum.value;
     const date = from.date.value;
     const Description = from.description.value;
+    const Photo = from.Photo.value;
     const Email = user?.email;
-    console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description);
+    const allData = {Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo};
+    // console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo);
+    console.log(allData);
+
+
+
+    fetch("http://localhost:5000/Addjob", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(allData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Add job success",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        
+      });
+
+
   };
 
   return (
@@ -45,7 +74,7 @@ const Addjob = () => {
                 <input
                   type="text"
                   name="title"
-                  placeholder="Job title255"
+                  placeholder="Job title"
                   className="input input-bordered"
                   // required
                 />
@@ -118,6 +147,18 @@ const Addjob = () => {
               className="textarea textarea-bordered textarea-md w-full h-32"
             ></textarea>
           </div>
+          <div className="form-control">
+                <label className="label">
+                  <span className="label-text">PhotoURL</span>
+                </label>
+                <input
+                  type="url"
+                  name="Photo"
+                  placeholder="PhotoURL"
+                  className="input input-bordered"
+                  // required
+                />
+              </div>
           <div className=" my-10 pb-10">
             <input
               type="submit"

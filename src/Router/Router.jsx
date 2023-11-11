@@ -7,6 +7,7 @@ import Addjob from '../Pages/Addjob/Addjob';
 import Login from '../Home/Login/Login';
 import SignUp from '../Home/SignUp/SignUp';
 
+
 const Router = createBrowserRouter([{
     path: "/",
     element: <Layout></Layout>,
@@ -28,6 +29,10 @@ const Router = createBrowserRouter([{
             path:'/signup',
             element: <SignUp></SignUp>
         },
+        // {
+        //     path:'/category',
+        //     element: <Category></Category>
+        // },
     ]
 }])
 
