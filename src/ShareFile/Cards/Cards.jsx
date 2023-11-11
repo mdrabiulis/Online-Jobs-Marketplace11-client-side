@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const Cards = ({ card }) => {
   const {
+    _id,
     Jobtitle,
     date,
     Minimum,
@@ -8,6 +10,7 @@ const Cards = ({ card }) => {
     Description,
     Photo,
   } = card;
+  console.log(_id);
   return (
     <div className="flex">
       <div className="card card-compact  bg-base-100 shadow-xl">
@@ -26,7 +29,9 @@ const Cards = ({ card }) => {
           <p>{Description}</p>
         </div>
         <div className="card-actions justify-center mb-4">
+            <Link to={`JobDetails/${_id}`}>
           <button className="btn btn-primary">Bid Now</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -156,7 +156,7 @@ const NavBar = () => {
             My posted jobs
           </NavLink>
           <NavLink
-            to="/mypostedjobs"
+            to="/mybids"
             className={({ isActive, isPending }) =>
               isPending
                 ? "pending"
