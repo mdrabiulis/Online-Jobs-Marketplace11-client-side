@@ -1,6 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Development from "../TabCategory/Development/Development";
+import DdigitalMarketing from "../TabCategory/DdigitalMarketing/DdigitalMarketing";
 
 const Category = () => {
   return (
@@ -17,7 +18,8 @@ const Category = () => {
           <Development></Development>
         </TabPanel>
         <TabPanel>
-          <h2>Ddigital Marketing</h2>
+          {/* <h2>Ddigital Marketing</h2> */}
+          <DdigitalMarketing></DdigitalMarketing>
         </TabPanel>
         <TabPanel>
           <h2>Graphics Design</h2>
