@@ -15,8 +15,8 @@ const Addjob = () => {
     const date = from.date.value;
     const Description = from.description.value;
     const Photo = from.Photo.value;
-    const Email = user?.email;
-    const allData = {Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo};
+    const email = user?.email;
+    const allData = {Jobtitle, email, date, select, Minimum, Maximum,Description,Photo};
     // console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo);
     console.log(allData);
 
@@ -59,7 +59,7 @@ const Addjob = () => {
                 {/* {user?.email} */}
                 <input
                   type="email"
-                  name="Email"
+                  name="email"
                   defaultValue={user?.email}
                   readOnly
                   placeholder="Email"
