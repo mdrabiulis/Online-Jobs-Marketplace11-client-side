@@ -1,10 +1,12 @@
 import { useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import Swal from "sweetalert2";
+import {  useNavigate } from "react-router-dom";
 
 const Addjob = () => {
   const { user } = useAuthContext();
   const [select, setSelect] = useState();
+  const navigate = useNavigate();
 
   const hendleBookService = (event) => {
     event.preventDefault();
@@ -16,11 +18,18 @@ const Addjob = () => {
     const Description = from.description.value;
     const Photo = from.Photo.value;
     const email = user?.email;
-    const allData = {Jobtitle, email, date, select, Minimum, Maximum,Description,Photo};
+    const allData = {
+      Jobtitle,
+      email,
+      date,
+      select,
+      Minimum,
+      Maximum,
+      Description,
+      Photo,
+    };
     // console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo);
     console.log(allData);
-
-
 
     fetch("http://localhost:5000/Addjob", {
       method: "POST",
@@ -39,11 +48,9 @@ const Addjob = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          navigate("/mypostedjobs");
         }
-        
       });
-
-
   };
 
   return (
@@ -56,7 +63,6 @@ const Addjob = () => {
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                {/* {user?.email} */}
                 <input
                   type="email"
                   name="email"
@@ -64,7 +70,7 @@ const Addjob = () => {
                   readOnly
                   placeholder="Email"
                   className="input input-bordered"
-                  // required
+                  required
                 />
               </div>
               <div className="form-control">
@@ -76,7 +82,7 @@ const Addjob = () => {
                   name="title"
                   placeholder="Job title"
                   className="input input-bordered"
-                  // required
+                  required
                 />
               </div>
               <div className="form-control">
@@ -88,7 +94,7 @@ const Addjob = () => {
                   name="minimum"
                   placeholder="Minimum price"
                   className="input input-bordered"
-                  // required
+                  required
                 />
               </div>
             </div>
@@ -103,7 +109,7 @@ const Addjob = () => {
                   name="date"
                   placeholder="Deadline"
                   className="input input-bordered"
-                  // required
+                  required
                 />
               </div>
               <div className="form-control">
@@ -114,13 +120,10 @@ const Addjob = () => {
                   className="select select-bordered w-full "
                   onChange={(e) => setSelect(e.target.value)}
                 >
-                  <option>
-                    Select Category?
-                  </option>
-                   <option>Web Development</option>
-                   <option>Ddigital Marketing</option>
+                  <option>Select Category?</option>
+                  <option>Web Development</option>
+                  <option>Ddigital Marketing</option>
                   <option>Graphics Design</option>
-                  
                 </select>
               </div>
               <div className="form-control">
@@ -132,7 +135,7 @@ const Addjob = () => {
                   name="maximum"
                   placeholder="Maximum price"
                   className="input input-bordered"
-                  // required
+                  required
                 />
               </div>
             </div>
@@ -148,17 +151,18 @@ const Addjob = () => {
             ></textarea>
           </div>
           <div className="form-control">
-                <label className="label">
-                  <span className="label-text">PhotoURL</span>
-                </label>
-                <input
-                  type="url"
-                  name="Photo"
-                  placeholder="PhotoURL"
-                  className="input input-bordered"
-                  // required
-                />
-              </div>
+            <label className="label">
+              <span className="label-text">PhotoURL</span>
+            </label>
+            <input
+              type="url"
+              name="Photo"
+              placeholder="PhotoURL"
+              className="input input-bordered"
+              required
+            />
+          </div>
+
           <div className=" my-10 pb-10">
             <input
               type="submit"
@@ -166,7 +170,6 @@ const Addjob = () => {
               className="w-full bg-[#6C53F8] h-12 text-white rounded-md"
             />
           </div>
-          {/* <input type="submit" value="submit" className="w-full bg-[#FF3811] h-12 text-white"/> */}
         </div>
       </form>
     </div>

@@ -1,16 +1,12 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import useAuthContext from "../../Hook/useAuthContext";
-// import { useState } from "react";
+
 const Cards = ({ card }) => {
-  // const [u, setU] =useState()
   const { user } = useAuthContext();
   const { _id, Jobtitle, date, Minimum, Maximum, Description, Photo, email } =
     card;
-  // console.log(card);
-  // if (email=== user?.email) {
-  //   setU()
-  // }console.log(u);
+
   return (
     <div className="flex">
       <div className="card card-compact  bg-base-100 shadow-xl">

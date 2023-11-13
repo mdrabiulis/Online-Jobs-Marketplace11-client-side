@@ -9,6 +9,7 @@ import SignUp from '../Home/SignUp/SignUp';
 import MyPostedJobs from '../Pages/My posted jobs/MyPostedJobs';
 // import MyBids from '../Pages/My Bids/MyBids';
 import JobDetails from '../Pages/Job Details/JobDetails';
+import MyBids from '../Pages/My Bids/MyBids';
 
 
 const Router = createBrowserRouter([{
@@ -41,11 +42,11 @@ const Router = createBrowserRouter([{
             element: <JobDetails></JobDetails>,
             loader: ({ params }) =>fetch(`http://localhost:5000/alljob/${params.id}`),
         },
-        // {
-        //     path:'/mybids/:id',
-        //     element: <MyBids></MyBids>,
+        {
+            path:'/mybids',
+            element: <MyBids></MyBids>,
         //     loader: ({ params }) =>fetch(`http://localhost:5000/alljob/${params.id}`),
-        // },
+        },
     ]
 }])
 
