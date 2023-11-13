@@ -10,6 +10,7 @@ import MyPostedJobs from '../Pages/My posted jobs/MyPostedJobs';
 // import MyBids from '../Pages/My Bids/MyBids';
 import JobDetails from '../Pages/Job Details/JobDetails';
 import MyBids from '../Pages/My Bids/MyBids';
+import Update from '../Pages/Update/Update';
 
 
 const Router = createBrowserRouter([{
@@ -45,7 +46,11 @@ const Router = createBrowserRouter([{
         {
             path:'/mybids',
             element: <MyBids></MyBids>,
-        //     loader: ({ params }) =>fetch(`http://localhost:5000/alljob/${params.id}`),
+        },
+        {
+            path:'/jobupdate/:id',
+            element: <Update></Update>,
+            loader: ({ params }) =>fetch(`http://localhost:5000/alljob/${params.id}`)
         },
     ]
 }])

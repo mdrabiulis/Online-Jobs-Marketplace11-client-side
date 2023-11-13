@@ -1,14 +1,25 @@
 import { useState } from "react";
-import useAuthContext from "../../Hook/useAuthContext";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import {  useNavigate } from "react-router-dom";
 
-const Addjob = () => {
-  const { user } = useAuthContext();
-  const [select, setSelect] = useState(null);
-  const navigate = useNavigate();
+const Update = () => {
+    const [select, setSelect] = useState(null);
+  const UpdateData = useLoaderData();
 
-  const hendleBookService = (event) => {
+
+  const {
+    _id,
+    Jobtitle,
+    date,
+    Minimum,
+    Maximum,
+    Description,
+    Photo,
+    email,
+    // select,
+  } = UpdateData;
+
+  const hendleUpdate = (event) => {
     event.preventDefault();
     const from = event.target;
     const Jobtitle = from.title.value;
@@ -17,10 +28,8 @@ const Addjob = () => {
     const date = from.date.value;
     const Description = from.description.value;
     const Photo = from.Photo.value;
-    const email = user?.email;
-    const allData = {
+    const allUpdateData = {
       Jobtitle,
-      email,
       date,
       select,
       Minimum,
@@ -28,34 +37,31 @@ const Addjob = () => {
       Description,
       Photo,
     };
-    // console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo);
-    console.log(allData);
-
-    fetch("http://localhost:5000/Addjob", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(allData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.insertedId) {
+   
+        fetch(`http://localhost:5000/alljob/${_id}`,{
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(allUpdateData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+  
+        if (data.modifiedCount > 0) {
           Swal.fire({
-            position: "top-end",
             icon: "success",
-            title: "Add job success",
-            showConfirmButton: false,
-            timer: 1500,
+            title: "success",
+            text: "Update Your job Successfully ....",
           });
-          navigate("/mypostedjobs");
         }
       });
-  };
 
+  };
   return (
     <div className="  max-w-7xl mx-auto mt-7 ">
-      <form onSubmit={hendleBookService}>
+      <form onSubmit={hendleUpdate}>
         <div className="rounded-md  bg-[#eeeff8] px-10">
           <div className="grid md:grid-cols-4 gap-6  ">
             <div className="grid col-span-2  w-full mx-auto">
@@ -66,7 +72,7 @@ const Addjob = () => {
                 <input
                   type="email"
                   name="email"
-                  defaultValue={user?.email}
+                  defaultValue={email}
                   readOnly
                   placeholder="Email"
                   className="input input-bordered"
@@ -80,6 +86,7 @@ const Addjob = () => {
                 <input
                   type="text"
                   name="title"
+                  defaultValue={Jobtitle}
                   placeholder="Job title"
                   className="input input-bordered"
                   required
@@ -91,6 +98,7 @@ const Addjob = () => {
                 </label>
                 <input
                   type="text"
+                  defaultValue={Minimum}
                   name="minimum"
                   placeholder="Minimum price"
                   className="input input-bordered"
@@ -107,6 +115,7 @@ const Addjob = () => {
                 <input
                   type="date"
                   name="date"
+                  defaultValue={date}
                   placeholder="Deadline"
                   className="input input-bordered"
                   required
@@ -117,10 +126,9 @@ const Addjob = () => {
                   <span className="label-text">Category</span>
                 </label>
                 <select
-
                   className="select select-bordered w-full "
                   onChange={(e) => setSelect(e.target.value)}
-                  
+                  defaultValue={select}
                 >
                   <option>Select Category?</option>
                   <option>Web Development</option>
@@ -135,6 +143,7 @@ const Addjob = () => {
                 <input
                   type="text"
                   name="maximum"
+                  defaultValue={Maximum}
                   placeholder="Maximum price"
                   className="input input-bordered"
                   required
@@ -148,6 +157,7 @@ const Addjob = () => {
             </label>
             <textarea
               placeholder="Description"
+              defaultValue={Description}
               name="description"
               className="textarea textarea-bordered textarea-md w-full h-32"
             ></textarea>
@@ -160,6 +170,7 @@ const Addjob = () => {
               type="url"
               name="Photo"
               placeholder="PhotoURL"
+              defaultValue={Photo}
               className="input input-bordered"
               required
             />
@@ -168,7 +179,7 @@ const Addjob = () => {
           <div className=" my-10 pb-10">
             <input
               type="submit"
-              value="Add job"
+              value="Update"
               className="w-full bg-[#6C53F8] h-12 text-white rounded-md"
             />
           </div>
@@ -178,4 +189,4 @@ const Addjob = () => {
   );
 };
 
-export default Addjob;
+export default Update;

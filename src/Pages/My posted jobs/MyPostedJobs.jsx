@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import PostedRow from "./PostedRow";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const MyPostedJobs = () => {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState([]);
+  const {Navigate}= useNavigate()
   const url = `http://localhost:5000/alljobs?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
-        console.log(data);
       });
   }, [url]);
-
-
 
   const hendleDelete = (id) => {
     Swal.fire({
@@ -44,17 +44,18 @@ const MyPostedJobs = () => {
     });
   };
 
+
+
   return (
     <div>
-      My Posted Jobs:
-      <div className="text-8xl">{userData.length}</div>
+      <div className="text-4xl text-center my-6">
+        My Posted Jobs:
+        <samp className="text-4xl text-blue-700">-{userData.length}</samp>
+      </div>
       <div className="overflow-x-auto">
-        {/* <table className="table"> */}
         <table className="table table-xs table-pin-rows table-pin-cols">
-          {/* head */}
           <thead>
             <tr>
-              {/* <th>Delete Btn</th> */}
               <th>Images</th>
               <th>Jobtitle</th>
               <th>Date</th>
@@ -62,17 +63,15 @@ const MyPostedJobs = () => {
               <th>Maximum</th>
               <th>Update</th>
               <th>Delete</th>
-              
             </tr>
           </thead>
           <tbody>
             {userData.map((Posteditem) => (
-              <PostedRow 
-              key={Posteditem._id} 
-              Jobitem={Posteditem}
-              hendleDelete={hendleDelete}
-           
-             ></PostedRow>
+              <PostedRow
+                key={Posteditem._id}
+                Jobitem={Posteditem}
+                hendleDelete={hendleDelete}
+              ></PostedRow>
             ))}
           </tbody>
         </table>
