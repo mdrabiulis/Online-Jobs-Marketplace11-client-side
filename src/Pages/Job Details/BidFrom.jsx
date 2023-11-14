@@ -21,14 +21,14 @@ const BidFrom = ({ detailsData }) => {
     const biddingPrice = from.biddingPrice.value;
     const bidDeadline = from.bidDeadline.value;
 
-    const data={ Photo, Jobtitle, email, biddingPrice, buyer, bidDeadline };
+    const data={ Photo, Jobtitle, email, biddingPrice, buyer, bidDeadline, status: "pending" };
 
     fetch("http://localhost:5000/bidjobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({data,status: "pending"}),
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {

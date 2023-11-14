@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const PostedRow = ({ Jobitem, hendleDelete, hendleUpdate }) => {
+const PostedRow = ({ Jobitem, hendleDelete }) => {
   const { _id, Photo, date, Jobtitle, Minimum, Maximum } = Jobitem;
   return (
     <tr>

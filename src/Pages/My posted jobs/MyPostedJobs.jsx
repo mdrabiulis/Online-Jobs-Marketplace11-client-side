@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import PostedRow from "./PostedRow";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+
 
 const MyPostedJobs = () => {
   const { user } = useAuthContext();
   const [userData, setUserData] = useState([]);
-  const {Navigate}= useNavigate()
+
   const url = `http://localhost:5000/alljobs?email=${user?.email}`;
   useEffect(() => {
     fetch(url)
@@ -46,7 +46,7 @@ const MyPostedJobs = () => {
 
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div className="text-4xl text-center my-6">
         My Posted Jobs:
         <samp className="text-4xl text-blue-700">-{userData.length}</samp>
@@ -66,6 +66,7 @@ const MyPostedJobs = () => {
           </thead>
           <tbody>
             {userData.map((Posteditem) => (
+           
               <PostedRow
                 key={Posteditem._id}
                 Jobitem={Posteditem}
