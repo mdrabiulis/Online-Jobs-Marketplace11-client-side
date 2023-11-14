@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Update = () => {
-    const [select, setSelect] = useState(null);
+  const [select, setSelect] = useState(null);
   const UpdateData = useLoaderData();
-
 
   const {
     _id,
@@ -37,18 +37,18 @@ const Update = () => {
       Description,
       Photo,
     };
-   
-        fetch(`http://localhost:5000/alljob/${_id}`,{
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(allUpdateData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-  
+
+    fetch(`http://localhost:5000/alljob/${_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(allUpdateData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
         if (data.modifiedCount > 0) {
           Swal.fire({
             icon: "success",
@@ -57,10 +57,12 @@ const Update = () => {
           });
         }
       });
-
   };
   return (
     <div className="  max-w-7xl mx-auto mt-7 ">
+      <Helmet>
+        <title>e-Job | Update</title>
+      </Helmet>
       <form onSubmit={hendleUpdate}>
         <div className="rounded-md  bg-[#eeeff8] px-10">
           <div className="grid md:grid-cols-4 gap-6  ">

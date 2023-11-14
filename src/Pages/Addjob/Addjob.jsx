@@ -1,7 +1,8 @@
 import { useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import Swal from "sweetalert2";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Addjob = () => {
   const { user } = useAuthContext();
@@ -55,6 +56,9 @@ const Addjob = () => {
 
   return (
     <div className="  max-w-7xl mx-auto mt-7 ">
+      <Helmet>
+        <title>e-Job | Add job</title>
+      </Helmet>
       <form onSubmit={hendleBookService}>
         <div className="rounded-md  bg-[#eeeff8] px-10">
           <div className="grid md:grid-cols-4 gap-6  ">
@@ -117,10 +121,8 @@ const Addjob = () => {
                   <span className="label-text">Category</span>
                 </label>
                 <select
-
                   className="select select-bordered w-full "
                   onChange={(e) => setSelect(e.target.value)}
-                  
                 >
                   <option>Select Category?</option>
                   <option>Web Development</option>

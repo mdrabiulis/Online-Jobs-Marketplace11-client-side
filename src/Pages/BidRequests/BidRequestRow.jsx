@@ -1,4 +1,4 @@
-const BidRequestRow = ({ bidRequestitem }) => {
+const BidRequestRow = ({ bidRequestitem,hendleAccepted,hendleRejects }) => {
   const { _id, Photo, bidDeadline, Jobtitle, biddingPrice, status } =
     bidRequestitem;
   return (
@@ -16,19 +16,34 @@ const BidRequestRow = ({ bidRequestitem }) => {
       <td>{bidDeadline}</td>
       <td>$ {biddingPrice}</td>
       <td>{status}</td>
-      <td>
-        <button className="w-full bg-green-400 h-10 text-white rounded-md">
+      
+      
+      {status === "pending" ? <><td>
+        <button onClick={()=>hendleAccepted(_id)} className="w-full bg-green-400 h-10 text-white rounded-md">
           Accepted
         </button>
       </td>
       <td>
-        <button
-          // onClick={() => hendleDelete(_id)}
-          className="w-full bg-red-600 h-10 text-white rounded-md"
+        <button onClick={()=>hendleRejects(_id)} className="w-full bg-red-600 h-10 text-white rounded-md"
         >
           Rejects
         </button>
+      </td></>:<></>}
+
+
+
+
+      {/* <td>
+        <button onClick={()=>hendleAccepted(_id)} className="w-full bg-green-400 h-10 text-white rounded-md">
+          Accepted
+        </button>
       </td>
+      <td>
+        <button onClick={()=>hendleRejects(_id)} className="w-full bg-red-600 h-10 text-white rounded-md"
+        >
+          Rejects
+        </button>
+      </td> */}
     </tr>
   );
 };

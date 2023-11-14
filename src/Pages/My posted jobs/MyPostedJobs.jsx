@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import PostedRow from "./PostedRow";
 import Swal from "sweetalert2";
-
+import { Helmet } from "react-helmet-async";
 
 const MyPostedJobs = () => {
   const { user } = useAuthContext();
@@ -43,10 +43,11 @@ const MyPostedJobs = () => {
     });
   };
 
-
-
   return (
     <div className="max-w-7xl mx-auto">
+      <Helmet>
+        <title>e-Job | My Posted Jobs</title>
+      </Helmet>
       <div className="text-4xl text-center my-6">
         My Posted Jobs:
         <samp className="text-4xl text-blue-700">-{userData.length}</samp>
@@ -66,7 +67,6 @@ const MyPostedJobs = () => {
           </thead>
           <tbody>
             {userData.map((Posteditem) => (
-           
               <PostedRow
                 key={Posteditem._id}
                 Jobitem={Posteditem}

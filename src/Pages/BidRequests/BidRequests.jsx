@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import BidRequestRow from "./BidRequestRow";
+import { Helmet } from "react-helmet-async";
 
 const BidRequests = () => {
   const { user } = useAuthContext();
   const [bidData, setbidData] = useState([]);
+  // const [a, setA] = useState(findbidData)
 
   const url = `http://localhost:5000/bidjobs`;
   useEffect(() => {
@@ -17,8 +19,55 @@ const BidRequests = () => {
 
   const findbidData = bidData.filter((item) => item.buyer === user?.email);
 
+  const hendleAccepted = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/bidjobs/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "in progress" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remaining = bidData.filter((item) => item._id !== id);
+          const updated = bidData.find((item) => item._id === id);
+          updated.status = "in progress";
+          const newBookings = [updated, ...remaining];
+          setbidData(newBookings);
+        }
+      });
+  };
+
+  const hendleRejects = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/bidjobs/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "Canceled" }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          const remaining = bidData.filter((item) => item._id !== id);
+          const updated = bidData.find((item) => item._id === id);
+          updated.status = "Canceled";
+          const newBookings = [updated, ...remaining];
+          setbidData(newBookings);
+        }
+      });
+  };
+
   return (
     <div className="max-w-7xl mx-auto">
+      <Helmet>
+        <title>e-Job | Bid Requests</title>
+      </Helmet>
       <div className="text-4xl text-center my-6">
         Bid Requests:
         <samp className="text-4xl text-blue-700">-{findbidData.length}</samp>
@@ -41,6 +90,8 @@ const BidRequests = () => {
               <BidRequestRow
                 key={bidRequestitem._id}
                 bidRequestitem={bidRequestitem}
+                hendleAccepted={hendleAccepted}
+                hendleRejects={hendleRejects}
               ></BidRequestRow>
             ))}
           </tbody>

@@ -4,6 +4,7 @@ import loginimg from "../../../public/login.jpg";
 import useAuthContext from "../../Hook/useAuthContext";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const { createNewUser, userAllUpdateProfile } = useAuthContext();
@@ -26,7 +27,6 @@ const SignUp = () => {
         icon: "error",
         title: "Oops...",
         text: `Password must contain one digit from 1 to 9 , one uppercase letter, a special character and it must be 7-16 characters long.!  Example: Aa123@#$ `,
-        
       });
       return;
     } else {
@@ -41,7 +41,6 @@ const SignUp = () => {
             icon: "success",
             title: "Create Account Successful...",
             text: "",
-            
           });
           // navigate("/");
         })
@@ -51,7 +50,6 @@ const SignUp = () => {
             icon: "error",
             title: "Oops...",
             text: "Something went wrong!",
-            
           });
         });
     }
@@ -59,6 +57,9 @@ const SignUp = () => {
 
   return (
     <div className="flex flex-col md:flex-row items-center ">
+      <Helmet>
+        <title>e-Job | SignUp</title>
+      </Helmet>
       <img src={loginimg} className=" rounded-lg md:w-2/4" />
       <div className="w-full lg:w-[35%]">
         <form onSubmit={hendleSignUp} className="card-body">
@@ -133,7 +134,7 @@ const SignUp = () => {
             </Link>
           </h2>
         </form>
-          <GoogleLogin></GoogleLogin>
+        <GoogleLogin></GoogleLogin>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import GoogleLogin from "../GoogleLogin/GoogleLogin";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { signInWithEmail } = useAuthContext();
@@ -46,6 +47,9 @@ const Login = () => {
 
   return (
     <div className="flex flex-col md:flex-row items-center ">
+      <Helmet>
+        <title>e-Job | Login</title>
+      </Helmet>
       <img src={loginimg} className=" rounded-lg md:w-2/4" />
       <div className="w-full lg:w-[35%]">
         <form onSubmit={hendlesign} className="card-body">
@@ -97,7 +101,7 @@ const Login = () => {
             </Link>
           </h2>
         </form>
-          <GoogleLogin></GoogleLogin>
+        <GoogleLogin></GoogleLogin>
       </div>
     </div>
   );
