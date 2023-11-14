@@ -7,7 +7,7 @@ import Addjob from '../Pages/Addjob/Addjob';
 import Login from '../Home/Login/Login';
 import SignUp from '../Home/SignUp/SignUp';
 import MyPostedJobs from '../Pages/My posted jobs/MyPostedJobs';
-// import MyBids from '../Pages/My Bids/MyBids';
+
 import JobDetails from '../Pages/Job Details/JobDetails';
 import MyBids from '../Pages/My Bids/MyBids';
 import Update from '../Pages/Update/Update';

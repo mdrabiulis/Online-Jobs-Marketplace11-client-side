@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import PostedRow from "./PostedRow";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const MyPostedJobs = () => {
