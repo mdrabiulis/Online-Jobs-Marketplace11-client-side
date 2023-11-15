@@ -1,15 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginimg from "../../../public/login.jpg";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
-
 import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import { Helmet } from "react-helmet-async";
+// import axios from "axios";
+
+
+
+
+
+
+
+
 
 const Login = () => {
   const { signInWithEmail } = useAuthContext();
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const [userLoginErromessage, setUserLoginErromessage] = useState("");
   const [loginUserSuccessful, setloginUserSuccessful] = useState("");
 
@@ -27,7 +36,14 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         setloginUserSuccessful("Login Successful");
-
+        navigate(location?.state ? location?.state : "/");
+        // axios
+        // .post("http://localhost:5020/jwt", user, { withCredentials: true })
+        // .then((res) => {
+        //   if (res.data.success) {
+        //     navigate(location?.state ? location?.state : "/");
+        //   }
+        // });
         Swal.fire({
           icon: "success",
           title: "Login Successful...",

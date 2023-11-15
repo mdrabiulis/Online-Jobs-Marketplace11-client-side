@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "../GoogleLogin/GoogleLogin";
 import loginimg from "../../../public/login.jpg";
 import useAuthContext from "../../Hook/useAuthContext";
@@ -10,6 +10,7 @@ const SignUp = () => {
   const { createNewUser, userAllUpdateProfile } = useAuthContext();
   const [userErro, setUserError] = useState("");
   const [createSuccessful, setCreateUserSuccessful] = useState("");
+  const navigate = useNavigate();
 
   const hendleSignUp = (event) => {
     event.preventDefault();
@@ -42,7 +43,8 @@ const SignUp = () => {
             title: "Create Account Successful...",
             text: "",
           });
-          // navigate("/");
+          navigate("/");
+          window.location.reload(); 
         })
         .catch((error) => {
           setUserError(error.message);

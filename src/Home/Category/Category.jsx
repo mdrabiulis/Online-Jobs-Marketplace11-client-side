@@ -9,23 +9,20 @@ const Category = () => {
     <div className="font-roboto">
       <Tabs>
         <div className="text-center ">
-        <TabList >
-          <Tab>Web Development</Tab>
-          <Tab>Ddigital Marketing</Tab>
-          <Tab>Graphics Design</Tab>
-        </TabList>
+          <TabList>
+            <Tab>Web Development</Tab>
+            <Tab>Ddigital Marketing</Tab>
+            <Tab>Graphics Design</Tab>
+          </TabList>
         </div>
 
         <TabPanel>
-          {/* <h2>Web Development</h2> */}
           <Development></Development>
         </TabPanel>
         <TabPanel>
-          {/* <h2>Ddigital Marketing</h2> */}
           <DdigitalMarketing></DdigitalMarketing>
         </TabPanel>
         <TabPanel>
-          {/* <h2>Graphics Design</h2> */}
           <GraphicsDesign></GraphicsDesign>
         </TabPanel>
       </Tabs>

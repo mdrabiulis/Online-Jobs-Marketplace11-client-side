@@ -7,11 +7,11 @@ import Addjob from '../Pages/Addjob/Addjob';
 import Login from '../Home/Login/Login';
 import SignUp from '../Home/SignUp/SignUp';
 import MyPostedJobs from '../Pages/My posted jobs/MyPostedJobs';
-
 import JobDetails from '../Pages/Job Details/JobDetails';
 import MyBids from '../Pages/My Bids/MyBids';
 import Update from '../Pages/Update/Update';
 import BidRequests from '../Pages/BidRequests/BidRequests';
+import PrivateRoute from '../Pages/Private Route/PrivateRoute';
 
 
 const Router = createBrowserRouter([{
@@ -25,13 +25,13 @@ const Router = createBrowserRouter([{
         },
         {
             path:'/bidrequests',
-            element: <BidRequests></BidRequests>,
+            element: <PrivateRoute><BidRequests></BidRequests></PrivateRoute>,
             // loader:()=> fetch('http://localhost:5000/bidjobs')
 
         },
         {
             path:'/addjob',
-            element: <Addjob></Addjob>
+            element: <PrivateRoute><Addjob></Addjob></PrivateRoute>
         },
         {
             path:'/login',
@@ -43,20 +43,20 @@ const Router = createBrowserRouter([{
         },
         {
             path:'/mypostedjobs',
-            element: <MyPostedJobs></MyPostedJobs>
+            element: <PrivateRoute><MyPostedJobs></MyPostedJobs></PrivateRoute>
         },
         {
             path:'/JobDetails/:id',
-            element: <JobDetails></JobDetails>,
+            element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
             loader: ({ params }) =>fetch(`http://localhost:5000/alljob/${params.id}`),
         },
         {
             path:'/mybids',
-            element: <MyBids></MyBids>,
+            element: <PrivateRoute><MyBids></MyBids></PrivateRoute>,
         },
         {
             path:'/jobupdate/:id',
-            element: <Update></Update>,
+            element: <PrivateRoute><Update></Update></PrivateRoute>,
             loader: ({ params }) =>fetch(`http://localhost:5000/alljob/${params.id}`)
         },
     ]

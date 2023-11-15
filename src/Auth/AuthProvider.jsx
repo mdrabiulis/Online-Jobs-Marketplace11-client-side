@@ -30,6 +30,7 @@ const loginUserGooglr = () =>{
 
 
   const signInWithEmail =(email,password)=>{
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email,password)
   }
 
@@ -50,6 +51,7 @@ const loginUserGooglr = () =>{
   }, []);
 
   const userAllUpdateProfile = (Name, Photo) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: Name,
       photoURL: Photo,

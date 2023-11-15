@@ -4,11 +4,8 @@ import useAuthContext from "../../Hook/useAuthContext";
 import Swal from "sweetalert2";
 
 const NavBar = () => {
-  const { user, SignOutUser, loading } = useAuthContext();
+  const { user, SignOutUser, } = useAuthContext();
 
-  if (loading) {
-    return <span className="loading loading-spinner text-secondary"></span>;
-  }
 
   const SignOutUse = () => {
     SignOutUser()
