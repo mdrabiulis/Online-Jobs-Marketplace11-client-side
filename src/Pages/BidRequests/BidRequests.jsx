@@ -67,7 +67,7 @@ const BidRequests = () => {
       <Helmet>
         <title>e-Job | Bid Requests</title>
       </Helmet>
-      <div className="text-4xl text-center my-6">
+      <div className="text-4xl font-roboto font-bold text-center my-6">
         Bid Requests:
         <samp className="text-4xl text-blue-700">-{findbidData.length}</samp>
       </div>

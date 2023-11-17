@@ -46,7 +46,7 @@ const MyBids = () => {
       <Helmet>
         <title>e-Job | My Bids</title>
       </Helmet>
-      <h2 className="text-center text-3xl font-roboto font-bold">MyBids:- {bidData.length}</h2>
+      <h2 className="text-center text-4xl font-roboto font-bold my-6">MyBids:- <samp className="text-4xl text-blue-700">-{bidData.length}</samp></h2>
       <div className="overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>

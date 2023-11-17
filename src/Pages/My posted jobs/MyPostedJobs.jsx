@@ -49,7 +49,7 @@ const MyPostedJobs = () => {
       <Helmet>
         <title>e-Job | My Posted Jobs</title>
       </Helmet>
-      <div className="text-4xl text-center my-6">
+      <div className="text-4xl font-roboto font-bold text-center my-6">
         My Posted Jobs:
         <samp className="text-4xl text-blue-700">-{userData.length}</samp>
       </div>
