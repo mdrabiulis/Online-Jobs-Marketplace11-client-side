@@ -3,19 +3,20 @@ import useAuthContext from "../../Hook/useAuthContext";
 import PostedRow from "./PostedRow";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const MyPostedJobs = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState([]);
 
-  const url = `http://localhost:5000/alljobs?email=${user?.email}`;
+  const url = `/alljobs?email=${user?.email}`;
+
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserData(data);
-      });
-  }, [url]);
+    axiosSecure.get(url).then((res) => {
+      setUserData(res.data);
+    });
+  }, [url, axiosSecure]);
 
   const hendleDelete = (id) => {
     Swal.fire({

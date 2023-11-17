@@ -5,17 +5,10 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import { Helmet } from "react-helmet-async";
-// import axios from "axios";
-
-
-
-
-
-
-
-
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const Login = () => {
+  const axiosSecure = useAxiosSecure();
   const { signInWithEmail } = useAuthContext();
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,7 +20,6 @@ const Login = () => {
     const from = event.target;
     const email = from.email.value;
     const password = from.password.value;
-    console.log(email, password);
 
     setUserLoginErromessage("");
     setloginUserSuccessful("");
@@ -36,14 +28,13 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         setloginUserSuccessful("Login Successful");
-        navigate(location?.state ? location?.state : "/");
-        // axios
-        // .post("http://localhost:5020/jwt", user, { withCredentials: true })
-        // .then((res) => {
-        //   if (res.data.success) {
-        //     navigate(location?.state ? location?.state : "/");
-        //   }
-        // });
+        const user = { email };
+
+        axiosSecure.post("/jwt", user).then((res) => {
+          if (res.data.success) {
+            navigate(location?.state ? location?.state : "/");
+          }
+        });
         Swal.fire({
           icon: "success",
           title: "Login Successful...",

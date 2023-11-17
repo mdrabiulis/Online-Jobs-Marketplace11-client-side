@@ -7,6 +7,7 @@ const JobDetails = () => {
   const detailsData = useLoaderData();
 
   const { Jobtitle, date, Minimum, Maximum, Description, Photo } = detailsData;
+  
   return (
     <div className="max-w-7xl mx-auto">
       <Helmet>

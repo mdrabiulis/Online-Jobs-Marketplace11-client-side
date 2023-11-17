@@ -31,19 +31,6 @@ const BidRequestRow = ({ bidRequestitem,hendleAccepted,hendleRejects }) => {
       </td></>:<></>}
 
 
-
-
-      {/* <td>
-        <button onClick={()=>hendleAccepted(_id)} className="w-full bg-green-400 h-10 text-white rounded-md">
-          Accepted
-        </button>
-      </td>
-      <td>
-        <button onClick={()=>hendleRejects(_id)} className="w-full bg-red-600 h-10 text-white rounded-md"
-        >
-          Rejects
-        </button>
-      </td> */}
     </tr>
   );
 };

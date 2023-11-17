@@ -26,7 +26,7 @@ const Router = createBrowserRouter([{
         {
             path:'/bidrequests',
             element: <PrivateRoute><BidRequests></BidRequests></PrivateRoute>,
-            // loader:()=> fetch('http://localhost:5000/bidjobs')
+      
 
         },
         {

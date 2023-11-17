@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import Cards from "../../../ShareFile/Cards/Cards";
+import useAxiosSecure from "../../../Hook/useAxiosSecure";
 
 
 const DdigitalMarketing = () => {
+    const axiosSecure = useAxiosSecure();
     const [allJob, setAllJob] = useState([])
 
 
 
 useEffect(()=>{
-    fetch('http://localhost:5000/alljob')
-    .then(res => res.json())
-        .then(data =>{
-            setAllJob(data)})
-},[])
+    axiosSecure.get("/alljob").then((res) => setAllJob(res.data));
+  }, [axiosSecure]);
 
 
 

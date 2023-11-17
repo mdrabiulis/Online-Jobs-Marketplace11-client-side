@@ -4,7 +4,9 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
+
 const Addjob = () => {
+ 
   const { user } = useAuthContext();
   const [select, setSelect] = useState(null);
   const navigate = useNavigate();
@@ -30,8 +32,8 @@ const Addjob = () => {
       Photo,
     };
     // console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo);
-    console.log(allData);
-
+    // console.log(allData);
+    
     fetch("http://localhost:5000/Addjob", {
       method: "POST",
       headers: {

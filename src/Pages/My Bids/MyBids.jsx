@@ -2,18 +2,21 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import BidRow from "./BidRow";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const MyBids = () => {
   const { user } = useAuthContext();
+  const axiosSecure = useAxiosSecure();
   const [bidData, setbidData] = useState([]);
-  const url = `http://localhost:5000/bidjobs?email=${user?.email}`;
+  const url = `/bidjobs?email=${user?.email}`;
+
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setbidData(data);
-      });
-  }, [url]);
+    axiosSecure.get(url)
+    .then(res=>{
+      setbidData(res.data);
+    })
+
+  }, [url,axiosSecure]);
 
   const hendle = (id) => {
     console.log(id);
@@ -43,7 +46,7 @@ const MyBids = () => {
       <Helmet>
         <title>e-Job | My Bids</title>
       </Helmet>
-      MyBids{bidData.length}
+      <h2 className="text-center text-3xl font-roboto font-bold">MyBids:- {bidData.length}</h2>
       <div className="overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>

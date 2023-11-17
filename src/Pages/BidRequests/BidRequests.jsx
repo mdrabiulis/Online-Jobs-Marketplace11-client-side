@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../../Hook/useAuthContext";
 import BidRequestRow from "./BidRequestRow";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
 
 const BidRequests = () => {
   const { user } = useAuthContext();
   const [bidData, setbidData] = useState([]);
-  // const [a, setA] = useState(findbidData)
 
   const url = `http://localhost:5000/bidjobs`;
   useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setbidData(data);
-      });
+    axios.get(url, { withCredentials: true }).then((res) => {
+      setbidData(res.data);
+    });
   }, [url]);
 
+  // console.log(user?.email);
   const findbidData = bidData.filter((item) => item.buyer === user?.email);
 
   const hendleAccepted = (id) => {

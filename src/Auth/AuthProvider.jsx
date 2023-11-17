@@ -10,30 +10,30 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../Firebase/firebaseConfig";
+import useAxiosSecure from "../Hook/useAxiosSecure";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const providerGoogle = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const axiosSecure = useAxiosSecure();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-
-const loginUserGooglr = () =>{
-  return signInWithPopup(auth, providerGoogle)
-}
+  const loginUserGooglr = () => {
+    return signInWithPopup(auth, providerGoogle);
+  };
 
   const createNewUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-
-  const signInWithEmail =(email,password)=>{
+  const signInWithEmail = (email, password) => {
     setLoading(true);
-    return signInWithEmailAndPassword(auth, email,password)
-  }
-
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const SignOutUser = () => {
     setLoading(true);
@@ -42,13 +42,24 @@ const loginUserGooglr = () =>{
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
+      if (currentUser) {
+        axiosSecure.post("/jwt", loggedUser).then((res) => {
+          console.log(res.data);
+        });
+      } else {
+        axiosSecure.post("/logout", loggedUser).then((res) => {
+          console.log(res.data);
+        });
+      }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [user?.email, axiosSecure]);
 
   const userAllUpdateProfile = (Name, Photo) => {
     setLoading(true);
@@ -58,8 +69,6 @@ const loginUserGooglr = () =>{
     });
   };
 
-
-
   const authUserInfo = {
     user,
     loading,
@@ -67,7 +76,7 @@ const loginUserGooglr = () =>{
     SignOutUser,
     userAllUpdateProfile,
     signInWithEmail,
-    loginUserGooglr
+    loginUserGooglr,
   };
 
   return (
