@@ -1,4 +1,5 @@
-const BidRequestRow = ({ bidRequestitem,hendleAccepted,hendleRejects }) => {
+import PropTypes from "prop-types";
+const BidRequestRow = ({ bidRequestitem, hendleAccepted, hendleRejects }) => {
   const { _id, Photo, bidDeadline, Jobtitle, biddingPrice, status } =
     bidRequestitem;
   return (
@@ -16,23 +17,37 @@ const BidRequestRow = ({ bidRequestitem,hendleAccepted,hendleRejects }) => {
       <td>{bidDeadline}</td>
       <td>$ {biddingPrice}</td>
       <td>{status}</td>
-      
-      
-      {status === "pending" ? <><td>
-        <button onClick={()=>hendleAccepted(_id)} className="w-full bg-green-400 h-10 text-white rounded-md">
-          Accepted
-        </button>
-      </td>
-      <td>
-        <button onClick={()=>hendleRejects(_id)} className="w-full bg-red-600 h-10 text-white rounded-md"
-        >
-          Rejects
-        </button>
-      </td></>:<></>}
 
-
+      {status === "pending" ? (
+        <>
+          <td>
+            <button
+              onClick={() => hendleAccepted(_id)}
+              className="w-full bg-green-400 h-10 text-white rounded-md"
+            >
+              Accepted
+            </button>
+          </td>
+          <td>
+            <button
+              onClick={() => hendleRejects(_id)}
+              className="w-full bg-red-600 h-10 text-white rounded-md"
+            >
+              Rejects
+            </button>
+          </td>
+        </>
+      ) : (
+        <></>
+      )}
     </tr>
   );
+};
+
+BidRequestRow.propTypes = {
+  bidRequestitem: PropTypes.object,
+  hendleRejects: PropTypes.func,
+  hendleAccepted: PropTypes.func,
 };
 
 export default BidRequestRow;

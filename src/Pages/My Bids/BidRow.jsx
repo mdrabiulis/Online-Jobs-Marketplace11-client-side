@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; 
 const BidRow = ({ hendle,biditem,}) => {
   // console.log(biditem);
   const { _id, Photo, bidDeadline, Jobtitle, biddingPrice, buyer, status } =
@@ -36,4 +37,10 @@ const BidRow = ({ hendle,biditem,}) => {
   );
 };
 
+BidRow.propTypes = {
+  biditem: PropTypes.object,
+  hendle: PropTypes.func,
+};
+
 export default BidRow;
+

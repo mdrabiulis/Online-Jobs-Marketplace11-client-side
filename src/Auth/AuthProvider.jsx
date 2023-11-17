@@ -11,7 +11,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../Firebase/firebaseConfig";
 import useAxiosSecure from "../Hook/useAxiosSecure";
-import axios from "axios";
 
 export const AuthContext = createContext(null);
 const providerGoogle = new GoogleAuthProvider();

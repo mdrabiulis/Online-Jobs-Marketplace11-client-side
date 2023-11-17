@@ -1,10 +1,10 @@
-
+import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import useAuthContext from "../../Hook/useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 const BidFrom = ({ detailsData }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     // _id,
     email,
@@ -21,7 +21,15 @@ const BidFrom = ({ detailsData }) => {
     const biddingPrice = from.biddingPrice.value;
     const bidDeadline = from.bidDeadline.value;
 
-    const data={ Photo, Jobtitle, email, biddingPrice, buyer, bidDeadline, status: "pending" };
+    const data = {
+      Photo,
+      Jobtitle,
+      email,
+      biddingPrice,
+      buyer,
+      bidDeadline,
+      status: "pending",
+    };
 
     fetch("http://localhost:5000/bidjobs", {
       method: "POST",
@@ -44,8 +52,6 @@ const BidFrom = ({ detailsData }) => {
           navigate("/mybids");
         }
       });
-
-
   };
 
   return (
@@ -128,4 +134,7 @@ const BidFrom = ({ detailsData }) => {
   );
 };
 
+BidFrom.propTypes = {
+  detailsData: PropTypes.object,
+};
 export default BidFrom;
