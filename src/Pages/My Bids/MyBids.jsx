@@ -11,17 +11,15 @@ const MyBids = () => {
   const url = `/bidjobs?email=${user?.email}`;
 
   useEffect(() => {
-    axiosSecure.get(url)
-    .then(res=>{
+    axiosSecure.get(url).then((res) => {
       setbidData(res.data);
-    })
-
-  }, [url,axiosSecure]);
+    });
+  }, [url, axiosSecure]);
 
   const hendle = (id) => {
     console.log(id);
 
-    fetch(`http://localhost:5000/bidjobs/${id}`, {
+    fetch(`https://server-side-assignment-11.vercel.app/bidjobs/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -46,7 +44,10 @@ const MyBids = () => {
       <Helmet>
         <title>e-Job | My Bids</title>
       </Helmet>
-      <h2 className="text-center text-4xl font-roboto font-bold my-6">MyBids:- <samp className="text-4xl text-blue-700">-{bidData.length}</samp></h2>
+      <h2 className="text-center text-4xl font-roboto font-bold my-6">
+        MyBids:-{" "}
+        <samp className="text-4xl text-blue-700">-{bidData.length}</samp>
+      </h2>
       <div className="overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols">
           <thead>

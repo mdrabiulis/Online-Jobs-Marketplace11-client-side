@@ -31,7 +31,7 @@ const BidFrom = ({ detailsData }) => {
       status: "pending",
     };
 
-    fetch("http://localhost:5000/bidjobs", {
+    fetch("https://server-side-assignment-11.vercel.app/bidjobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

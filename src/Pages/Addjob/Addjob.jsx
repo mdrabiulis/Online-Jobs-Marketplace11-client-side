@@ -4,9 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
-
 const Addjob = () => {
- 
   const { user } = useAuthContext();
   const [select, setSelect] = useState(null);
   const navigate = useNavigate();
@@ -33,8 +31,8 @@ const Addjob = () => {
     };
     // console.log(Jobtitle, Email, date, select, Minimum, Maximum,Description,Photo);
     // console.log(allData);
-    
-    fetch("http://localhost:5000/Addjob", {
+
+    fetch("https://server-side-assignment-11.vercel.app/Addjob", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -169,12 +167,9 @@ const Addjob = () => {
             />
           </div>
 
-          <div className=" my-10 pb-10">
-            <input
-              type="submit"
-              value="Add job"
-              className="w-full bg-[#6C53F8] h-12 text-white rounded-md"
-            />
+          <div className=" my-10 pb-10 ">
+            <button className="w-full bg-[#6C53F8] h-12 text-white rounded-md">Add job</button>
+
           </div>
         </div>
       </form>

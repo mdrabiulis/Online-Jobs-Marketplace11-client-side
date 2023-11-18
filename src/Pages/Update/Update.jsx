@@ -38,7 +38,7 @@ const Update = () => {
       Photo,
     };
 
-    fetch(`http://localhost:5000/alljob/${_id}`, {
+    fetch(`https://server-side-assignment-11.vercel.app/alljob/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -179,11 +179,7 @@ const Update = () => {
           </div>
 
           <div className=" my-10 pb-10">
-            <input
-              type="submit"
-              value="Update"
-              className="w-full bg-[#6C53F8] h-12 text-white rounded-md"
-            />
+            <button className="w-full bg-[#6C53F8] h-12 text-white rounded-md">Update job</button> 
           </div>
         </div>
       </form>

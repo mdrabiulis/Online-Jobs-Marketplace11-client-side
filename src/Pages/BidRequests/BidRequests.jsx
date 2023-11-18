@@ -8,7 +8,7 @@ const BidRequests = () => {
   const { user } = useAuthContext();
   const [bidData, setbidData] = useState([]);
 
-  const url = `http://localhost:5000/bidjobs`;
+  const url = `https://server-side-assignment-11.vercel.app/bidjobs`;
   useEffect(() => {
     axios.get(url, { withCredentials: true }).then((res) => {
       setbidData(res.data);
@@ -20,7 +20,7 @@ const BidRequests = () => {
 
   const hendleAccepted = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/bidjobs/${id}`, {
+    fetch(`https://server-side-assignment-11.vercel.app/bidjobs/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -42,7 +42,7 @@ const BidRequests = () => {
 
   const hendleRejects = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/bidjobs/${id}`, {
+    fetch(`https://server-side-assignment-11.vercel.app/bidjobs/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

@@ -178,7 +178,7 @@ const NavBar = () => {
           </NavLink>
         </ul>
       </div>
-      <div className="navbar-end ">
+      <div className="navbar-end z-50">
         <div className="flex-none">
           <div className="">
             {user ? (
